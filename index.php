@@ -48,17 +48,17 @@
   $withoutPark=[];
 
 
-    foreach ($hotels as $hotel): 
-        if ($hotel['parking']) {
-            $withPark[] = $hotel;
-        } else {
-            $withoutPark[] = $hotel;
-        }
-    endforeach; 
+  foreach ($hotels as $hotel): 
+      if ($hotel['parking']) {
+          $withPark[] = $hotel;
+      } else {
+          $withoutPark[] = $hotel;
+      }
+  endforeach; 
  
 
-    var_dump($withPark);
-    var_dump($withoutPark);
+    var_dump('with',$withPark);
+    var_dump('without', $withoutPark);
     var_dump($isPark);
 ?>
 
@@ -84,7 +84,7 @@
       <label for="park">parcheggio</label>
       <select name="park" id="park">
 
-        <option value="" selected >seleziona</option>
+       
         <option value="true" >presente</option>
         <option value="false" >non presente</option>
 
@@ -100,56 +100,23 @@
 
 
   <!-- situazione di default con nesuna ricerca -->
-    <?php if($isPark== ''): ?>
+   
       <?php foreach($hotels as $hotel): ?>
-        <div class="card" style="width: 22rem;">
-          <img src="<?php echo $hotel['img'] ?>" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h3 class="card-title"><?php echo $hotel['name'] ?></h3>
-            <p class="card-text"><?php echo 'Dal centro: '.$hotel['distance_to_center'].'km' ?></p>
-            <p class="card-text"><?php echo 'voto: '.$hotel['vote'].' /5' ?></p>
-            <?php ($hotel['parking']== true)?$message='presente':$message='non presente' ?>
-            <p class="card-text"><?php echo'parcheggio: '. $message ?></p>
+        <?php if($isPark == $hotel['parking']): ?>
+          <div class="card" style="width: 22rem;">
+            <img src="<?php echo $hotel['img'] ?>" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h3 class="card-title"><?php echo $hotel['name'] ?></h3>
+              <p class="card-text"><?php echo 'Dal centro: '.$hotel['distance_to_center'].'km' ?></p>
+              <p class="card-text"><?php echo 'voto: '.$hotel['vote'].' /5' ?></p>
+              <?php ($hotel['parking']== true)?$message='presente':$message='non presente' ?>
+              <p class="card-text"><?php echo'parcheggio: '. $message ?></p>
+            </div>
           </div>
-        </div>
+        <?php endif ?>
       <?php endforeach ?>
-    <?php endif ?>    
 
-    <!-- situazione con parcheggio -->
-    <?php if($isPark==true): ?>
-      <?php foreach($withPark as $hotel): ?>
-        <div class="card" style="width: 22rem;">
-          <img src="<?php echo $hotel['img'] ?>" class="card-img-top" alt="...">
-          <div class="card-body">
 
-            <h3 class="card-title"><?php echo $hotel['name'] ?></h3>
-            <p class="card-text"><?php echo 'Dal centro: '.$hotel['distance_to_center'].'km' ?></p>
-            <p class="card-text"><?php echo 'voto: '.$hotel['vote'].' /5' ?></p>
-            <?php ($hotel['parking']== true)?$message='presente':$message='non presente' ?>
-            <p class="card-text"><?php echo'parcheggio: '. $message ?></p>
-
-          </div>
-        </div>
-      <?php endforeach ?>
-    <?php endif ?>
-
-    <!-- situazione senza parcheggio -->
-    <?php if($isPark==false && $isPark!== ''): ?>
-      <?php foreach($withoutPark as $hotel): ?>
-        <div class="card " style="width: 22rem;">
-          <img src="<?php echo $hotel['img'] ?>" class="card-img-top" alt="...">
-          <div class="card-body">
-
-            <h3 class="card-title"><?php echo $hotel['name'] ?></h3>
-            <p class="card-text"><?php echo 'Dal centro: '.$hotel['distance_to_center'].'km' ?></p>
-            <p class="card-text"><?php echo 'voto: '.$hotel['vote'].' /5' ?></p>
-            <?php ($hotel['parking']== true)?$message='presente':$message='non presente' ?>
-            <p class="card-text"><?php echo'parcheggio: '. $message ?></p>
-
-          </div>
-        </div>
-      <?php endforeach ?>
-    <?php endif ?>
 
   </div>
 </body>
