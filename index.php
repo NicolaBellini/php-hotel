@@ -44,22 +44,12 @@
   ];
 
   $isPark= $_GET['park'];
-  $withPark=[];
-  $withoutPark=[];
+  var_dump($isPark);
 
 
-  foreach ($hotels as $hotel): 
-      if ($hotel['parking']) {
-          $withPark[] = $hotel;
-      } else {
-          $withoutPark[] = $hotel;
-      }
-  endforeach; 
- 
+  $voted= $_GET['voto'];
+  var_dump($voted);
 
-    var_dump('with',$withPark);
-    var_dump('without', $withoutPark);
-    var_dump($isPark);
 ?>
 
 <!DOCTYPE html>
@@ -81,6 +71,19 @@
 
     <form action="index.php" method="get">
 
+
+      <label for="voto">stelle</label>
+      <select name="voto" id="voto">
+
+        <option value=""selected>seleziona</option>
+        <option value="1" >1</option>
+        <option value="2" >2</option>
+        <option value="3" >3</option>
+        <option value="4" >4</option>
+        <option value="5" >5</option>
+
+      </select>
+
       <label for="park">parcheggio</label>
       <select name="park" id="park">
 
@@ -89,6 +92,7 @@
         <option value="false" >non presente</option>
 
       </select>
+
     
       <button type="submit" class="btn btn-dark p-3">Cerca</button>
       <button type="reset" class="btn btn-dark p-3">reset</button>
@@ -104,7 +108,10 @@
       <?php foreach($hotels as $hotel): ?>
         <?php if($isPark === '' || $isPark === 'true' && $hotel['parking'] || $isPark === 'false' && !$hotel['parking'] 
         || $isPark === '' && (!$hotel['parking'] && $hotel['parking'])): ?>
-          <div class="card" style="width: 22rem;">
+        <?php if($voted ===  $hotel['vote'] || $voted === '' ): ?>
+
+        
+          <div class="card m-3 " style="width: 22rem;">
             <img src="<?php echo $hotel['img'] ?>" class="card-img-top" alt="...">
             <div class="card-body">
               <h3 class="card-title"><?php echo $hotel['name'] ?></h3>
@@ -114,6 +121,7 @@
               <p class="card-text"><?php echo'parcheggio: '. $message ?></p>
             </div>
           </div>
+           <?php endif ?>
         <?php endif ?>
       <?php endforeach ?>
 
