@@ -1,0 +1,9 @@
+img {
+  max-width: 100%;
+  object-fit: cover;
+  height: 300px;
+}
+
+.hidden {
+  display: none;
+}
