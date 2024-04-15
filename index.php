@@ -84,7 +84,7 @@
       <label for="park">parcheggio</label>
       <select name="park" id="park">
 
-       
+        <option value="" >seleziona</option>
         <option value="true" >presente</option>
         <option value="false" >non presente</option>
 
@@ -102,7 +102,8 @@
   <!-- situazione di default con nesuna ricerca -->
    
       <?php foreach($hotels as $hotel): ?>
-        <?php if($isPark === '' || $isPark === 'true' && $hotel['parking'] || $isPark === 'false' && !$hotel['parking']): ?>
+        <?php if($isPark === '' || $isPark === 'true' && $hotel['parking'] || $isPark === 'false' && !$hotel['parking'] 
+        || $isPark === '' && (!$hotel['parking'] && $hotel['parking'])): ?>
           <div class="card" style="width: 22rem;">
             <img src="<?php echo $hotel['img'] ?>" class="card-img-top" alt="...">
             <div class="card-body">
