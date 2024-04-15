@@ -75,7 +75,7 @@
       <label for="voto">stelle</label>
       <select name="voto" id="voto">
 
-        <option value=""selected>seleziona</option>
+        <option value="">tutti</option>
         <option value="1" >1</option>
         <option value="2" >2</option>
         <option value="3" >3</option>
@@ -87,7 +87,7 @@
       <label for="park">parcheggio</label>
       <select name="park" id="park">
 
-        <option value="" >seleziona</option>
+        <option value="" >tutti</option>
         <option value="true" >presente</option>
         <option value="false" >non presente</option>
 
@@ -106,9 +106,9 @@
   <!-- situazione di default con nesuna ricerca -->
    
       <?php foreach($hotels as $hotel): ?>
+        <?php if($voted ==  $hotel['vote'] || $voted === '' ): ?>
         <?php if($isPark === '' || $isPark === 'true' && $hotel['parking'] || $isPark === 'false' && !$hotel['parking'] 
         || $isPark === '' && (!$hotel['parking'] && $hotel['parking'])): ?>
-        <?php if($voted ===  $hotel['vote'] || $voted === '' ): ?>
 
         
           <div class="card m-3 " style="width: 22rem;">
