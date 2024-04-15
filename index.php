@@ -47,7 +47,7 @@
   $withPark=[];
   $withoutPark=[];
 
-if ($isPark == ''): 
+
     foreach ($hotels as $hotel): 
         if ($hotel['parking']) {
             $withPark[] = $hotel;
@@ -55,11 +55,11 @@ if ($isPark == ''):
             $withoutPark[] = $hotel;
         }
     endforeach; 
-endif; 
+ 
 
-  var_dump($isPark);
-  var_dump($withPark);
-  var_dump($withoutPark)
+    var_dump($withPark);
+    var_dump($withoutPark);
+    var_dump($isPark);
 ?>
 
 <!DOCTYPE html>
@@ -116,7 +116,7 @@ endif;
     <?php endif ?>    
 
     <!-- situazione con parcheggio -->
-    <?php if($isPark!== '' && $isPark==true): ?>
+    <?php if($isPark==true): ?>
       <?php foreach($withPark as $hotel): ?>
         <div class="card" style="width: 22rem;">
           <img src="<?php echo $hotel['img'] ?>" class="card-img-top" alt="...">
@@ -134,7 +134,7 @@ endif;
     <?php endif ?>
 
     <!-- situazione senza parcheggio -->
-    <?php if($isPark!== '' && $isPark==false): ?>
+    <?php if($isPark==false && $isPark!== ''): ?>
       <?php foreach($withoutPark as $hotel): ?>
         <div class="card " style="width: 22rem;">
           <img src="<?php echo $hotel['img'] ?>" class="card-img-top" alt="...">
