@@ -50,6 +50,9 @@
   $voted= $_GET['voto'];
   var_dump($voted);
 
+  
+  $distance=$_GET['distance'];
+  var_dump($distance);
 ?>
 
 <!DOCTYPE html>
@@ -70,6 +73,18 @@
   <div class="container d-flex justify-content-center">
 
     <form action="index.php" method="get">
+
+      <label for="distance">distanza entro:</label>
+      <select name="distance" id="distance">
+
+        <option value="">tutti</option>
+        <option value="5" >5km </option>
+        <option value="10" >10km</option>
+        <option value="15" >15km</option>
+        <option value="50" >50km</option>
+        <option value="" >50+km</option>
+
+      </select>
 
 
       <label for="voto">stelle</label>
@@ -107,21 +122,23 @@
    
       <?php foreach($hotels as $hotel): ?>
         <?php if($voted ==  $hotel['vote'] || $voted === '' ): ?>
-        <?php if($isPark === '' || $isPark === 'true' && $hotel['parking'] || $isPark === 'false' && !$hotel['parking'] 
-        || $isPark === '' && (!$hotel['parking'] && $hotel['parking'])): ?>
+          <?php if($isPark === '' || $isPark === 'true' && $hotel['parking'] || $isPark === 'false' && !$hotel['parking'] 
+           || $isPark === '' && (!$hotel['parking'] && $hotel['parking'])): ?>
+            <?php if($hotel['distance_to_center'] < $distance || $distance == '' ): ?>
 
         
-          <div class="card m-3 " style="width: 22rem;">
-            <img src="<?php echo $hotel['img'] ?>" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h3 class="card-title"><?php echo $hotel['name'] ?></h3>
-              <p class="card-text"><?php echo 'Dal centro: '.$hotel['distance_to_center'].'km' ?></p>
-              <p class="card-text"><?php echo 'voto: '.$hotel['vote'].' /5' ?></p>
-              <?php ($hotel['parking']== true)?$message='presente':$message='non presente' ?>
-              <p class="card-text"><?php echo'parcheggio: '. $message ?></p>
-            </div>
-          </div>
-           <?php endif ?>
+              <div class="card m-3 " style="width: 22rem;">
+                <img src="<?php echo $hotel['img'] ?>" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h3 class="card-title"><?php echo $hotel['name'] ?></h3>
+                  <p class="card-text"><?php echo 'Dal centro: '.$hotel['distance_to_center'].'km' ?></p>
+                  <p class="card-text"><?php echo 'voto: '.$hotel['vote'].' /5' ?></p>
+                  <?php ($hotel['parking']== true)?$message='presente':$message='non presente' ?>
+                  <p class="card-text"><?php echo'parcheggio: '. $message ?></p>
+                </div>
+              </div>
+            <?php endif ?>
+          <?php endif ?>
         <?php endif ?>
       <?php endforeach ?>
 
