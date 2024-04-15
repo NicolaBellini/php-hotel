@@ -102,7 +102,7 @@
   <!-- situazione di default con nesuna ricerca -->
    
       <?php foreach($hotels as $hotel): ?>
-        <?php if($isPark == $hotel['parking']): ?>
+        <?php if($isPark === '' || $isPark === 'true' && $hotel['parking'] || $isPark === 'false' && !$hotel['parking']): ?>
           <div class="card" style="width: 22rem;">
             <img src="<?php echo $hotel['img'] ?>" class="card-img-top" alt="...">
             <div class="card-body">
