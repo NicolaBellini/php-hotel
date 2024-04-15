@@ -1,7 +1,6 @@
 <?php
 
   $hotels = [
-
     [
         'name' => 'Hotel Belvedere',
         'description' => 'Hotel Belvedere Descrizione',
@@ -37,8 +36,9 @@
         'vote' => 2,
         'distance_to_center' => 50
     ],
-
   ];
+
+
 
 ?>
 
@@ -55,6 +55,21 @@
   <title>php-hotel</title>
 </head>
 <body>
-  ciaos
+  <div class="container d-flex flex-wrap justify-content-center p-5">
+    <?php foreach($hotels as $hotel): ?>
+      <div class="card" style="width: 22rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+
+          <h3 class="card-title"><?php echo $hotel['name'] ?></h3>
+          <p class="card-text"><?php echo 'Dal centro: '.$hotel['distance_to_center'].'km' ?></p>
+          <p class="card-text"><?php echo 'voto: '.$hotel['vote'].' /5' ?></p>
+          <?php ($hotel['parking']== true)?$message='presente':$message='non presente' ?>
+          <p class="card-text"><?php echo $message ?></p>
+
+        </div>
+      </div>
+    <?php endforeach ?>
+  </div>
 </body>
 </html>
