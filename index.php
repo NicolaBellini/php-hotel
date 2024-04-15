@@ -43,16 +43,14 @@
     ],
   ];
 
+  // DATA:
   $isPark= $_GET['park'];
-  var_dump($isPark);
 
 
   $voted= $_GET['voto'];
-  var_dump($voted);
 
   
   $distance=$_GET['distance'];
-  var_dump($distance);
 ?>
 
 <!DOCTYPE html>
@@ -124,6 +122,7 @@
         <?php if($voted ==  $hotel['vote'] || $voted === '' ): ?>
           <?php if($isPark === '' || $isPark === 'true' && $hotel['parking'] || $isPark === 'false' && !$hotel['parking'] 
            || $isPark === '' && (!$hotel['parking'] && $hotel['parking'])): ?>
+           <!-- ho cambiato la posizione dei fattori e così funziona, in altro modo non va, ho aggiunto una condizione che permette di poterli vedere tutti -->
             <?php if($hotel['distance_to_center'] < $distance || $distance == '' ): ?>
 
         
